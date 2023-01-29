@@ -1,4 +1,5 @@
-type game = {
+type games = {
     id?: number,
-    name: string
+    name: string,
+    categoryId: number
 }

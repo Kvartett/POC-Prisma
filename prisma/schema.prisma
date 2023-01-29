@@ -1,0 +1,32 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model categories {
+  id        Int      @id @default(autoincrement())
+  name      String
+  createdAt DateTime @default(now()) @db.Timestamp(6)
+  games     games[]
+}
+
+model games {
+  id         Int        @id @default(autoincrement())
+  name       String
+  categoryId Int
+  createdAt  DateTime   @default(now()) @db.Timestamp(6)
+  categories categories @relation(fields: [categoryId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  stock      stock[]
+}
+
+model stock {
+  id        Int      @id @default(autoincrement())
+  gameId    Int
+  quantity  Int
+  createdAt DateTime @default(now()) @db.Timestamp(6)
+  games     games    @relation(fields: [gameId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+}

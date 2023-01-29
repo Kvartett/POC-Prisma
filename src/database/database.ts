@@ -1,9 +1,15 @@
-import pg from "pg";
+import pkg from "@prisma/client";
+// import pg from "pg";
 // import dotenv from "dotenv";
 
 // dotenv.config()
 
-const { Pool } = pg;
+// const { Pool } = pg;
+const { PrismaClient } = pkg;
+const prisma = new PrismaClient();
+
+export default prisma;
+
 
 /* const connection = new Pool({
     DB_HOST,
@@ -13,12 +19,12 @@ const { Pool } = pg;
     DB_NAME
 }) */
 
-const connection = new Pool({
+/* const connection = new Pool({
     host: 'localhost',
     port: 5432,
     user: 'postgres',
     password: '190698',
-    database: 'pocTs'
+    database: 'poc_prisma'
 })
 
-export { connection }
+export { connection } */
